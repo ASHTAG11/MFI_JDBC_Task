@@ -95,4 +95,21 @@ public class Loan {
     private java.sql.Date disbursementDate;
     private java.math.BigDecimal outstandingPrinciple;
     private  String status;
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "loanID='" + loanID + '\'' +
+                ", borrowerID='" + borrowerID + '\'' +
+                ", productName='" + productName + '\'' +
+                ", principalAmount=" + principalAmount +
+                ", annualInterestRate=" + annualInterestRate +
+                ", termMonths=" + termMonths +
+                ", repaymentFrequency='" + repaymentFrequency + '\'' +
+                ", disbursementDate=" + disbursementDate +
+                ", outstandingPrinciple=" + outstandingPrinciple +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
+

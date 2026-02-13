@@ -22,7 +22,7 @@ public class BorrowerDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "SELECT * FROM borrower_tbl WHERE borrower_id = ?";
+                    "SELECT * FROM borrower_tbl WHERE Borrower_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -36,28 +36,28 @@ public class BorrowerDAO {
                 borrower = new Borrower();
 
                 borrower.setBorrowerID(
-                        rs.getString("borrower_id"));
+                        rs.getString("Borrower_ID"));
 
                 borrower.setFullName(
-                        rs.getString("full_name"));
+                        rs.getString("Full_Name"));
 
                 borrower.setGender(
-                        rs.getString("gender"));
+                        rs.getString("Gender"));
 
                 borrower.setDateOfBirth(
-                        rs.getDate("date_of_birth"));
+                        rs.getDate("DOB"));
 
                 borrower.setPrimaryPhone(
-                        rs.getString("primary_phone"));
+                        rs.getString("Primary_Phone"));
 
                 borrower.setVillageOrArea(
-                        rs.getString("village_area"));
+                        rs.getString("Village_Area"));
 
                 borrower.setRiskCategory(
-                        rs.getString("risk_category"));
+                        rs.getString("Risk_Category"));
 
                 borrower.setStatus(
-                        rs.getString("status"));
+                        rs.getString("Status_"));
             }
 
             con.close();
@@ -91,31 +91,34 @@ public class BorrowerDAO {
                 Borrower b = new Borrower();
 
                 b.setBorrowerID(
-                        rs.getString("borrower_id"));
+                        rs.getString("Borrower_ID"));
 
                 b.setFullName(
-                        rs.getString("full_name"));
+                        rs.getString("Full_Name"));
 
                 b.setGender(
-                        rs.getString("gender"));
+                        rs.getString("Gender"));
 
                 b.setDateOfBirth(
-                        rs.getDate("date_of_birth"));
+                        rs.getDate("DOB"));
 
                 b.setPrimaryPhone(
-                        rs.getString("primary_phone"));
+                        rs.getString("Primary_Phone"));
 
                 b.setVillageOrArea(
-                        rs.getString("village_area"));
+                        rs.getString("Village_Area"));
 
                 b.setRiskCategory(
-                        rs.getString("risk_category"));
+                        rs.getString("Risk_Category"));
 
                 b.setStatus(
-                        rs.getString("status"));
+                        rs.getString("Status_"));
 
                 list.add(b);
+
             }
+
+
 
             con.close();
 
@@ -159,6 +162,8 @@ public class BorrowerDAO {
             }
 
             con.close();
+            System.out.println(" ");
+            System.out.println(b.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -179,7 +184,7 @@ public class BorrowerDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "UPDATE borrower_tbl SET status = ? WHERE borrower_id = ?";
+                    "UPDATE borrower_tbl SET Status_ = ? WHERE Borrower_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -213,7 +218,7 @@ public class BorrowerDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "DELETE FROM borrower_tbl WHERE borrower_id = ?";
+                    "DELETE FROM borrower_tbl WHERE Borrower_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);

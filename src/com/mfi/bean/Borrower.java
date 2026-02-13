@@ -71,10 +71,27 @@ public class Borrower {
     private String borrowerID;
     private String fullName;
     private String gender;
-    private     Date dateOfBirth;
+    private Date dateOfBirth;
     private String primaryPhone;
     private String villageOrArea;
     private String riskCategory;
     private String status;
 
+
+    @Override
+    public String toString() {
+        return "Borrower{" +
+                "borrowerID='" + borrowerID + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", primaryPhone='" + primaryPhone + '\'' +
+                ", villageOrArea='" + villageOrArea + '\'' +
+                ", riskCategory='" + riskCategory + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
+
+
+

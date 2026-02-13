@@ -26,7 +26,7 @@ public class InstallmentDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "SELECT MAX(installment_id) FROM installment_tbl";
+                    "SELECT MAX(Installment_ID) FROM installment_tbl";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class InstallmentDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "SELECT * FROM installment_tbl WHERE installment_id = ?";
+                    "SELECT * FROM installment_tbl WHERE Installment_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -111,28 +111,28 @@ public class InstallmentDAO {
                 ins = new Installment();
 
                 ins.setInstallmentID(
-                        rs.getInt("installment_id"));
+                        rs.getInt("Installment_ID"));
 
                 ins.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 ins.setInstallementNo(
-                        rs.getInt("installment_no"));
+                        rs.getInt("Installment_No"));
 
                 ins.setDueDate(
-                        rs.getDate("due_date"));
+                        rs.getDate("Due_Date"));
 
                 ins.setDueAmt(
-                        rs.getBigDecimal("due_amount"));
+                        rs.getBigDecimal("Due_Amt"));
 
                 ins.setPaidAmt(
-                        rs.getBigDecimal("paid_amount"));
+                        rs.getBigDecimal("Paid_Amt"));
 
                 ins.setPaidDate(
-                        rs.getDate("paid_date"));
+                        rs.getDate("Paid_Date"));
 
                 ins.setStatus(
-                        rs.getString("status"));
+                        rs.getString("status_"));
             }
 
             con.close();
@@ -156,7 +156,7 @@ public class InstallmentDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "SELECT * FROM installment_tbl WHERE loan_id = ?";
+                    "SELECT * FROM installment_tbl WHERE Loan_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -170,28 +170,28 @@ public class InstallmentDAO {
                 Installment ins = new Installment();
 
                 ins.setInstallmentID(
-                        rs.getInt("installment_id"));
+                        rs.getInt("Installment_ID"));
 
                 ins.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 ins.setInstallementNo(
-                        rs.getInt("installment_no"));
+                        rs.getInt("Installment_No"));
 
                 ins.setDueDate(
-                        rs.getDate("due_date"));
+                        rs.getDate("Due_Date"));
 
                 ins.setDueAmt(
-                        rs.getBigDecimal("due_amount"));
+                        rs.getBigDecimal("Due_Amt"));
 
                 ins.setPaidAmt(
-                        rs.getBigDecimal("paid_amount"));
+                        rs.getBigDecimal("Paid_Amt"));
 
                 ins.setPaidDate(
-                        rs.getDate("paid_date"));
+                        rs.getDate("Paid_Date"));
 
                 ins.setStatus(
-                        rs.getString("status"));
+                        rs.getString("Status"));
 
                 list.add(ins);
             }
@@ -218,8 +218,8 @@ public class InstallmentDAO {
 
             String sql =
                     "SELECT * FROM installment_tbl " +
-                            "WHERE loan_id = ? AND " +
-                            "(status = 'PENDING' OR status = 'PARTIALLY_PAID')";
+                            "WHERE Loan_ID = ? AND " +
+                            "(status_ = 'PENDING' OR status_ = 'PARTIALLY_PAID')";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -233,28 +233,28 @@ public class InstallmentDAO {
                 Installment ins = new Installment();
 
                 ins.setInstallmentID(
-                        rs.getInt("installment_id"));
+                        rs.getInt("Installment_ID"));
 
                 ins.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 ins.setInstallementNo(
-                        rs.getInt("installment_no"));
+                        rs.getInt("Installment_No"));
 
                 ins.setDueDate(
-                        rs.getDate("due_date"));
+                        rs.getDate("Due_Date"));
 
                 ins.setDueAmt(
-                        rs.getBigDecimal("due_amount"));
+                        rs.getBigDecimal("Due_Amt"));
 
                 ins.setPaidAmt(
-                        rs.getBigDecimal("paid_amount"));
+                        rs.getBigDecimal("Paid_Amt"));
 
                 ins.setPaidDate(
-                        rs.getDate("paid_date"));
+                        rs.getDate("Paid_Date"));
 
                 ins.setStatus(
-                        rs.getString("status"));
+                        rs.getString("status_"));
 
                 list.add(ins);
             }
@@ -284,8 +284,8 @@ public class InstallmentDAO {
 
             String sql =
                     "UPDATE installment_tbl " +
-                            "SET paid_amount = ?, paid_date = ?, status = ? " +
-                            "WHERE installment_id = ?";
+                            "SET Paid_Amt = ?, Paid_Date = ?, status_ = ? " +
+                            "WHERE Installment_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -323,7 +323,7 @@ public class InstallmentDAO {
 
             String sql =
                     "SELECT * FROM installment_tbl " +
-                            "WHERE due_date < ? AND status <> 'PAID'";
+                            "WHERE Due_Date < ? AND status_ <> 'PAID'";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -337,28 +337,28 @@ public class InstallmentDAO {
                 Installment ins = new Installment();
 
                 ins.setInstallmentID(
-                        rs.getInt("installment_id"));
+                        rs.getInt("Installment_ID"));
 
                 ins.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 ins.setInstallementNo(
-                        rs.getInt("installment_no"));
+                        rs.getInt("Installment_No"));
 
                 ins.setDueDate(
-                        rs.getDate("due_date"));
+                        rs.getDate("Due_Date"));
 
                 ins.setDueAmt(
-                        rs.getBigDecimal("due_amount"));
+                        rs.getBigDecimal("Due_Amt"));
 
                 ins.setPaidAmt(
-                        rs.getBigDecimal("paid_amount"));
+                        rs.getBigDecimal("Paid_Amt"));
 
                 ins.setPaidDate(
-                        rs.getDate("paid_date"));
+                        rs.getDate("Paid_Date"));
 
                 ins.setStatus(
-                        rs.getString("status"));
+                        rs.getString("status_"));
 
                 list.add(ins);
             }

@@ -24,7 +24,7 @@ public class LoanDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "SELECT * FROM loan_tbl WHERE loan_id = ?";
+                    "SELECT * FROM loan_tbl WHERE Loan_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -38,34 +38,34 @@ public class LoanDAO {
                 loan = new Loan();
 
                 loan.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 loan.setBorrowerID(
-                        rs.getString("borrower_id"));
+                        rs.getString("Borrower_ID"));
 
                 loan.setProductName(
-                        rs.getString("product_name"));
+                        rs.getString("Product_Name"));
 
                 loan.setPrincipalAmount(
-                        rs.getBigDecimal("principal_amount"));
+                        rs.getBigDecimal("Principal_Amt"));
 
                 loan.setAnnualInterestRate(
-                        rs.getBigDecimal("annual_interest_rate"));
+                        rs.getBigDecimal("Annual_Interest_Rate"));
 
                 loan.setTermMonths(
-                        rs.getInt("term_months"));
+                        rs.getInt("Term_Months"));
 
                 loan.setRepaymentFrequency(
-                        rs.getString("repayment_frequency"));
+                        rs.getString("Repayment_Frequency"));
 
                 loan.setDisbursementDate(
-                        rs.getDate("disbursement_date"));
+                        rs.getDate("Disbursement_Date"));
 
                 loan.setOutstandingPrinciple(
-                        rs.getBigDecimal("outstanding_principal"));
+                        rs.getBigDecimal("Outstanding_Principal"));
 
                 loan.setStatus(
-                        rs.getString("status"));
+                        rs.getString("Status_"));
             }
 
             con.close();
@@ -100,34 +100,34 @@ public class LoanDAO {
                 Loan loan = new Loan();
 
                 loan.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 loan.setBorrowerID(
-                        rs.getString("borrower_id"));
+                        rs.getString("Borrower_ID"));
 
                 loan.setProductName(
-                        rs.getString("product_name"));
+                        rs.getString("Product_Name"));
 
                 loan.setPrincipalAmount(
-                        rs.getBigDecimal("principal_amount"));
+                        rs.getBigDecimal("Principal_Amt"));
 
                 loan.setAnnualInterestRate(
-                        rs.getBigDecimal("annual_interest_rate"));
+                        rs.getBigDecimal("Annual_Interest_Rate"));
 
                 loan.setTermMonths(
-                        rs.getInt("term_months"));
+                        rs.getInt("Term_Months"));
 
                 loan.setRepaymentFrequency(
-                        rs.getString("repayment_frequency"));
+                        rs.getString("Repayment_Frequency"));
 
                 loan.setDisbursementDate(
-                        rs.getDate("disbursement_date"));
+                        rs.getDate("Disbursement_Date"));
 
                 loan.setOutstandingPrinciple(
-                        rs.getBigDecimal("outstanding_principal"));
+                        rs.getBigDecimal("Outstanding_Principal"));
 
                 loan.setStatus(
-                        rs.getString("status"));
+                        rs.getString("Status_"));
 
                 list.add(loan);
             }
@@ -151,7 +151,7 @@ public class LoanDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "SELECT * FROM loan_tbl WHERE status = 'ACTIVE'";
+                    "SELECT * FROM loan_tbl WHERE Status_ = 'ACTIVE'";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -163,34 +163,34 @@ public class LoanDAO {
                 Loan loan = new Loan();
 
                 loan.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 loan.setBorrowerID(
-                        rs.getString("borrower_id"));
+                        rs.getString("Borrower_ID"));
 
                 loan.setProductName(
-                        rs.getString("product_name"));
+                        rs.getString("Product_Name"));
 
                 loan.setPrincipalAmount(
-                        rs.getBigDecimal("principal_amount"));
+                        rs.getBigDecimal("Principal_Amt"));
 
                 loan.setAnnualInterestRate(
-                        rs.getBigDecimal("annual_interest_rate"));
+                        rs.getBigDecimal("Annual_Interest_Rate"));
 
                 loan.setTermMonths(
-                        rs.getInt("term_months"));
+                        rs.getInt("Term_Months"));
 
                 loan.setRepaymentFrequency(
-                        rs.getString("repayment_frequency"));
+                        rs.getString("Repayment_Frequency"));
 
                 loan.setDisbursementDate(
-                        rs.getDate("disbursement_date"));
+                        rs.getDate("Disbursement_Date"));
 
                 loan.setOutstandingPrinciple(
-                        rs.getBigDecimal("outstanding_principal"));
+                        rs.getBigDecimal("Outstanding_Principal"));
 
                 loan.setStatus(
-                        rs.getString("status"));
+                        rs.getString("Status_"));
 
                 list.add(loan);
             }
@@ -205,7 +205,7 @@ public class LoanDAO {
     }
 
 
-    /* ================= Insert Loan ================= */
+
 
     public boolean insertLoan(Loan loan) {
 
@@ -217,6 +217,11 @@ public class LoanDAO {
 
             String sql =
                     "INSERT INTO loan_tbl VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+            // Generate new Loan ID
+            String newLoanId = getNextLoanId(con);
+            loan.setLoanID(newLoanId);
+
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -239,6 +244,8 @@ public class LoanDAO {
             }
 
             con.close();
+            System.out.println(" ");
+            System.out.println(loan.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -248,7 +255,7 @@ public class LoanDAO {
     }
 
 
-    /* ================= Update Loan Status ================= */
+
 
     public boolean updateLoanStatus(String loanID,
                                     String status) {
@@ -260,7 +267,7 @@ public class LoanDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "UPDATE loan_tbl SET status = ? WHERE loan_id = ?";
+                    "UPDATE loan_tbl SET Status_ = ? WHERE Loan_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -284,7 +291,7 @@ public class LoanDAO {
     }
 
 
-    /* ================= Update Outstanding Principal ================= */
+
 
     public boolean updateOutstandingPrincipal(String loanID,
                                               BigDecimal newOutstanding) {
@@ -296,7 +303,7 @@ public class LoanDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "UPDATE loan_tbl SET outstanding_principal = ? WHERE loan_id = ?";
+                    "UPDATE loan_tbl SET Outstanding_Principal = ? WHERE Loan_ID = ?";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -320,7 +327,7 @@ public class LoanDAO {
     }
 
 
-    /* ================= Find Active Loans By Borrower ================= */
+
 
     public List<Loan> findActiveLoansByBorrower(String borrowerID) {
 
@@ -331,7 +338,7 @@ public class LoanDAO {
             Connection con = DBUtil.getDBConnection();
 
             String sql =
-                    "SELECT * FROM loan_tbl WHERE borrower_id = ? AND status = 'ACTIVE'";
+                    "SELECT * FROM loan_tbl WHERE Borrower_ID = ? AND Status_ = 'ACTIVE'";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -345,34 +352,34 @@ public class LoanDAO {
                 Loan loan = new Loan();
 
                 loan.setLoanID(
-                        rs.getString("loan_id"));
+                        rs.getString("Loan_ID"));
 
                 loan.setBorrowerID(
-                        rs.getString("borrower_id"));
+                        rs.getString("Borrower_ID"));
 
                 loan.setProductName(
-                        rs.getString("product_name"));
+                        rs.getString("Product_Name"));
 
                 loan.setPrincipalAmount(
-                        rs.getBigDecimal("principal_amount"));
+                        rs.getBigDecimal("Principal_Amt"));
 
                 loan.setAnnualInterestRate(
-                        rs.getBigDecimal("annual_interest_rate"));
+                        rs.getBigDecimal("Annual_Interest_Rate"));
 
                 loan.setTermMonths(
-                        rs.getInt("term_months"));
+                        rs.getInt("Term_Months"));
 
                 loan.setRepaymentFrequency(
-                        rs.getString("repayment_frequency"));
+                        rs.getString("Repayment_Frequency"));
 
                 loan.setDisbursementDate(
-                        rs.getDate("disbursement_date"));
+                        rs.getDate("Disbursement_Date"));
 
                 loan.setOutstandingPrinciple(
-                        rs.getBigDecimal("outstanding_principal"));
+                        rs.getBigDecimal("Outstanding_Principal"));
 
                 loan.setStatus(
-                        rs.getString("status"));
+                        rs.getString("Status_"));
 
                 list.add(loan);
             }
@@ -385,4 +392,25 @@ public class LoanDAO {
 
         return list;
     }
+
+    public String getNextLoanId(Connection con) throws Exception {
+
+        String sql = "SELECT Loan_ID FROM loan_tbl ORDER BY Loan_ID DESC LIMIT 1";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+
+            String lastId = rs.getString("Loan_ID"); // LN2025-010
+
+            int num = Integer.parseInt(lastId.substring(7));
+            num++;
+
+            return "LN2025-" + String.format("%03d", num);
+        }
+
+        return "LN2025-001";
+    }
+
 }

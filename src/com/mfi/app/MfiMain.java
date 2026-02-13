@@ -17,14 +17,18 @@ public class MfiMain {
 
         System.out.println("--- Microfinance Loan & Repayment Console ---");
 
+        String bid = "BR" + (System.currentTimeMillis() % 100000);
 
-        /* ================= DEMO 1: Register Borrower ================= */
+
 
         try {
 
             Borrower b = new Borrower();
 
-            b.setBorrowerID("BR2001");
+           // b.setBorrowerID("BR2001");
+
+            b.setBorrowerID(bid);
+
             b.setFullName("Nalini Devi");
             b.setGender("FEMALE");
             b.setDateOfBirth(java.sql.Date.valueOf("1965-03-15"));
@@ -55,8 +59,8 @@ public class MfiMain {
 
             Loan loan = new Loan();
 
-            loan.setLoanID("LN2025-010");
-            loan.setBorrowerID("BR2001");
+            //loan.setLoanID("LN2025-010");
+            loan.setBorrowerID(bid);
             loan.setProductName("Small Business Loan");
 
             loan.setPrincipalAmount(

@@ -88,7 +88,7 @@ public class MfiService {
     public boolean createLoanAccount(Loan loan)
             throws ValidationException {
 
-        if (loan.getLoanID() == null || loan.getLoanID().isEmpty()
+        if (loan.getBorrowerID() == null || loan.getBorrowerID().isEmpty()
                 || loan.getBorrowerID() == null || loan.getBorrowerID().isEmpty()
                 || loan.getProductName() == null || loan.getProductName().isEmpty()
                 || loan.getPrincipalAmount().compareTo(BigDecimal.ZERO) <= 0
@@ -99,8 +99,7 @@ public class MfiService {
         }
 
         // Check borrower
-        Borrower b =
-                borrowerDAO.findBorrower(loan.getBorrowerID());
+        Borrower b = borrowerDAO.findBorrower(loan.getBorrowerID());
 
         if (b == null || !"ACTIVE".equals(b.getStatus())) {
             return false;
@@ -125,6 +124,8 @@ public class MfiService {
             }
 
             boolean ok = loanDAO.insertLoan(loan);
+            String generatedLoanId = loan.getLoanID();
+
 
             if (!ok) {
                 con.rollback();
@@ -143,7 +144,8 @@ public class MfiService {
                 ins.setInstallmentID(
                         installmentDAO.generateInstallmentID());
 
-                ins.setLoanID(loan.getLoanID());
+                ins.setLoanID(generatedLoanId);
+
 
                 ins.setInstallementNo(i);
 
